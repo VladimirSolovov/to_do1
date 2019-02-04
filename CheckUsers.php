@@ -1,13 +1,13 @@
 <?php
 
-class Users
+class CheckUsers
 {
 
 	private static $db = null;
 
 	public function __construct()
 	{
-		include_once 'db.php';
+		include_once 'DataBase.php';
 		if (self::$db == null) self::$db = new DataBase(); 
 	}
 
@@ -19,7 +19,7 @@ class Users
 				'error' => 'Не заполнен логин или пароль'
 			];
 		}
-		if(!$this->isLoginUser($login)){
+		if($result = self::$db->getUserForLogin($login)){
 			return [
 				'status' => false,
 				'error' => 'Пользователь с таким логином уже существует'
@@ -38,10 +38,5 @@ class Users
 				'error' => 'Что то пошло не так'
 			];
 		}
-	}
-
-	public function isLoginUser($login){
-		$result = self::$db->getUserForLogin($login);
-		return ($result === [])? true : false;
 	}
 }
