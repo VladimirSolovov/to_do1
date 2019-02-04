@@ -191,7 +191,7 @@ class DataBase
         $st = $this->connect->prepare($sql);
         $st->bindValue( ":login", $login, PDO::PARAM_STR);
         $st->execute();
-        return  $st->fetchALL(PDO::FETCH_ASSOC);
+        return $st->fetchALL(PDO::FETCH_ASSOC);
     }
 
 

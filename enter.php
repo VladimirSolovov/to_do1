@@ -2,7 +2,7 @@
 include 'templates/header.php';
 if($_GET['action'] == 'logout')
 {
-	unset($_SESSION);
+	unset($_SESSION['username']);
 	include_once 'index.php';
 }else if($_GET['action'] == 'login')
 {
@@ -11,7 +11,7 @@ if($_GET['action'] == 'logout')
 		echo 'Вы не заполнили обязательные поля, поле логин или пароль пустое';
 	   die();
 	}else{
-		include 'db.php';
+		include 'DataBase.php';
 		$users = new DataBase();
 		$result = $users->authUser($_POST['login'], $_POST['password']);
 		if(empty($result))
@@ -26,8 +26,8 @@ if($_GET['action'] == 'logout')
 	}
 	}else if($_GET['action'] == 'registration')
 		{
-		include_once 'Users.php';
-		$users = new Users();
+		include_once 'CheckUsers.php';
+		$users = new CheckUsers();
 		$result = $users->registration($_POST['login'], $_POST['password']);
 		if($result['status']){
 			echo 'Вы успешно зарегистрировались, вернитесь на главную чтобы авторизоваться';

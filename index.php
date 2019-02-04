@@ -1,6 +1,6 @@
 <?php
 include 'templates/header.php';
-include_once 'db.php';
+include_once 'DataBase.php';
 $newDb = new DataBase;
 $action = '';
 $assigned_user_id = $_SESSION['id'];
